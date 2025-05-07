@@ -171,8 +171,7 @@ body {
     content:attr(data-type);
     font-size: 1rem;
     position: relative;
-    left:-0.5em
-}
+    left:-0.5em}
 
 /* --------- Media queries */
 
