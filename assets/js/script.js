@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
         button.addEventListener("click", function(){
             if(this.getAttribute("data-type") === "submit"){
                 checkAnswer();
-                
+
             }else{
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function(){
     
     });
     }
+    document.addEventListener("keydown",function(event){
+        if(event.key === "Enter"){
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
 });
 
@@ -25,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function(){
  * This function will start a new game and call the appropriate function to display the question.   
  */
 function runGame(gameType){
+    document.getElementById("answer-box").value=""; // This will clear the answer box when the game starts.
+    document.getElementById("answer-box").focus();// This will make sure that the answer box is focused when the game starts.
     //  Create two random numbers between 1 and 25
     let num1 = Math.floor(Math.random()*25)+1;
     let num2 = Math.floor(Math.random()*25)+1;
