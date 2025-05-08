@@ -30,23 +30,21 @@ function runGame(gameType){
     // Check the game type and call the approriate function to display the question.
     if(gameType === "addition"){
         displayAdditionQuestion(num1, num2);
+    } else if(gameType === "multiply"){
+        displayMultiplyQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw (`Unknown game type: ${gameType}. Aborting!`);// This will cause an error in the console and stop the game.
     }
+}
 
-
-    if(gameType === "subtract"){
-        displaySubtractQuestion(num1, num2);
-    } 
-     if(gameType === "multiply"){
-        displayMultiplyQuestion(num1,num2);
-    } 
+    
+    
     if(gameType === "division"){
         displayDivisionQuestion(num1,num2A)
     }
 
-}
+
 
 /**
  * Checks the answer against the first element in the reuturned 
@@ -75,11 +73,16 @@ function calculateCorrectAnswer(){
         let operator = document.getElementById("operator").textContent;
         if(operator === "+"){
             return [operand1 + operand2,"addition"];// This will return the correct answer and the next operator till the next operator is chosen.
+        } else if(operator === "x"){
+            return [operand1 * operand2,"multiply"];
+
         } else {
             alert(`Unimplemented operator ${operator}`);
             throw `Unimplemeneted operator ${operator}.Aborting!`;// This will cause an error in the console and stop the game.;
         }
-    }
+        
+    }  
+    
     
 
 /**
@@ -110,7 +113,11 @@ function displayAdditionQuestion(operand1, operand2){
 function displaySubtractQuestion(){
 
 }
-function displayMultiplyQuestion(){
+
+function displayMultiplyQuestion(operand1, operand2){
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "x";
 
 }
 function displayDivisionQuestion(){
