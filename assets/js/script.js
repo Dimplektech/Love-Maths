@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
         button.addEventListener("click", function(){
             if(this.getAttribute("data-type") === "submit"){
                 checkAnswer();
+                
             }else{
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
@@ -32,18 +33,30 @@ function runGame(gameType){
         displayAdditionQuestion(num1, num2);
     } else if(gameType === "multiply"){
         displayMultiplyQuestion(num1, num2);
-    } else {
+    } else if(gameType === "subtract"){
+        if(num1 < num2){
+            let temp = num1;
+            num1 = num2;
+            num2 = temp;
+        }
+        // This will make sure that the first number is always greater than the second number.
+
+
+        displaySubtractQuestion(num1, num2);
+    } else if(gameType === "division"){
+        if(num1 < num2){
+            let temp = num1;
+            num1 = num2;
+            num2 = temp;
+        }
+        // This will make sure that the first number is always greater than the second numbe
+        displayDivisionQuestion(num1, num2);
+    } else{    
+
         alert(`Unknown game type: ${gameType}`);
         throw (`Unknown game type: ${gameType}. Aborting!`);// This will cause an error in the console and stop the game.
     }
 }
-
-    
-    
-    if(gameType === "division"){
-        displayDivisionQuestion(num1,num2A)
-    }
-
 
 
 /**
@@ -76,7 +89,11 @@ function calculateCorrectAnswer(){
         } else if(operator === "x"){
             return [operand1 * operand2,"multiply"];
 
-        } else {
+        } else if(operator === "-"){
+            return [operand1 - operand2,"subtract"];
+        } else if(operator === "/"){
+            return [operand1 / operand2,"division"];
+        }  else {
             alert(`Unimplemented operator ${operator}`);
             throw `Unimplemeneted operator ${operator}.Aborting!`;// This will cause an error in the console and stop the game.;
         }
@@ -110,7 +127,10 @@ function displayAdditionQuestion(operand1, operand2){
 
 }
 
-function displaySubtractQuestion(){
+function displaySubtractQuestion(operand1, operand2){
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "-";
 
 }
 
@@ -120,6 +140,9 @@ function displayMultiplyQuestion(operand1, operand2){
     document.getElementById("operator").textContent = "x";
 
 }
-function displayDivisionQuestion(){
+function displayDivisionQuestion(operand1, operand2){
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operator").textContent = "/"; 
 
 }
