@@ -58,8 +58,10 @@ function checkAnswer(){
     let isCorrect =userAnswer === calculatedAnswer[0];// This will check if the answer is correct or not.
     if (isCorrect){
         alert("Hey ! You got it right!");
+        incrementScore();
     } else {
         alert(`Awwww....so sad! You answered ${userAnswer}. The correct answer is ${calculatedAnswer[0]} `)
+        incrementWrongAnswer();
     }
     runGame(calculatedAnswer[1]);// This will call the  next operatoration to be used in the next game.
 }
@@ -80,12 +82,20 @@ function calculateCorrectAnswer(){
     }
     
 
-
+/**
+ * Get the score from the DOM and increment by 1.
+ * also update the DOM with the new score.
+ * This function will be called when the user gets the correct answer.
+ */
 function incrementScore(){
-
+    let oldScore=parseInt(document.getElementById("score").textContent);
+    document.getElementById("score").textContent = ++oldScore;// This will increment the score by 1.
 }
 
+/** Gets the current tally of incorrect answers from the DOM  and increments it by 1*/
 function incrementWrongAnswer(){
+    let oldScore=parseInt(document.getElementById("incorrect").textContent);
+    document.getElementById("incorrect").textContent = ++oldScore;// This will increment the score by 1.
 
 }
 
