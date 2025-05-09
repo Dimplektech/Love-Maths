@@ -52,12 +52,15 @@ function runGame(gameType){
 
         displaySubtractQuestion(num1, num2);
     } else if(gameType === "division"){
+        // creating first number 3 digit for division and second number 2 digit for division.
+        let num1 = Math.floor(Math.random()*500)+1;
+        let num2 = Math.floor(Math.random()*25)+1;
         if(num1 < num2){
             let temp = num1;
             num1 = num2;
             num2 = temp;
         }
-        // This will make sure that the first number is always greater than the second numbe
+        // This will make sure that the first number is always greater than the second number
         displayDivisionQuestion(num1, num2);
     } else{    
 
@@ -100,7 +103,7 @@ function calculateCorrectAnswer(){
         } else if(operator === "-"){
             return [operand1 - operand2,"subtract"];
         } else if(operator === "/"){
-            return [operand1 / operand2,"division"];
+            return [Math.round(operand1 / operand2),"division"];
         }  else {
             alert(`Unimplemented operator ${operator}`);
             throw `Unimplemeneted operator ${operator}.Aborting!`;// This will cause an error in the console and stop the game.;
